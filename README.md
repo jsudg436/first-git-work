@@ -132,86 +132,16 @@
 
 ---
 
-## 폴더 구조
+## 협업 툴 및 Git 워크플로우
 
-```bash
-Dr-Wait/
-├─ dr-wait-frontend/            # → ① 프론트엔드 (Next.js) 프로젝트
-│   ├─ public/
-│   │   ├─ favicon.ico
-│   │   ├─ current-location.svg
-│   │   └─ (기타 이미지/아이콘)
-│   ├─ src/
-│   │   ├─ app/
-│   │   │   ├─ layout.tsx           # 웹앱 전체 레이아웃 (폰트, Kakao Script)
-│   │   │   ├─ page.tsx             # 홈 화면 (예: 병원 검색 가이드)
-│   │   │   ├─ login/
-│   │   │   │   ├─ page.tsx         # 로그인 페이지 (아이디/비밀번호)
-│   │   │   │   └─ page.module.scss  # SCSS 모듈 (로그인 전용)
-│   │   │   ├─ signup/
-│   │   │   │   ├─ page.tsx         # 회원가입 페이지  
-│   │   │   │   └─ page.module.scss  # SCSS 모듈 (회원가입 전용)
-│   │   │   ├─ hospital/
-│   │   │   │   ├─ page.tsx         # 병원 검색 페이지 (Kakao Maps 연동)  
-│   │   │   │   └─ page.module.scss  # SCSS 모듈 (병원 검색 전용)
-│   │   │   ├─ membership/
-│   │   │   │   ├─ page.tsx         # 멤버십 결제 페이지  
-│   │   │   │   └─ page.module.scss  # SCSS 모듈 (멤버십 전용)
-│   │   │   └─ (추가 라우트)  
-│   │   ├─ components/              # 재사용 컴포넌트
-│   │   │   ├─ TopBar.tsx           # 상단 네비게이션 바  
-│   │   │   ├─ TabBar.tsx           # 하단 네비게이션 바  
-│   │   │   ├─ ProfileCard.tsx      # 프로필 카드 컴포넌트  
-│   │   │   ├─ RowScroll.tsx        # 가로 스크롤 래퍼  
-│   │   │   └─ (기타 컴포넌트)  
-│   │   ├─ hooks/                   # 커스텀 훅  
-│   │   │   └─ useGeolocation.ts    # 브라우저 Geolocation 래퍼  
-│   │   ├─ data/                    # 정적 데이터  
-│   │   │   ├─ searchKeywords.ts    # 기본 키워드(카페, 편의점 등)  
-│   │   │   └─ hospitalKeywords.ts  # 병원 키워드(종합병원, 치과 등)  
-│   │   ├─ types/                   # TS Type 정의  
-│   │   │   └─ kakao/maps/search.ts # Kakao Maps API 응답 타입  
-│   │   ├─ assets/                  # 이미지, SVG, 폰트 리소스  
-│   │   ├─ styles/                  # 전역/공용 스타일 및 Tailwind 설정  
-│   │   │   ├─ globals.scss  
-│   │   │   ├─ tailwind-all.css  
-│   │   │   └─ tailwind.config.js  
-│   │   ├─ .env.local               # (로컬) 환경 변수: NEXT_PUBLIC_KAKAO_JAVASCRIPT_KEY  
-│   │   ├─ next.config.js  
-│   │   ├─ package.json  
-│   │   └─ tsconfig.json  
-│   └─ README.md                    # 프론트엔드 전용 README (현재 파일 포함되지 않음)
-│
-├─ dr-wait-backend/               # → ② 백엔드(Spring Boot) 프로젝트
-│   ├─ src/
-│   │   ├─ main/
-│   │   │   ├─ java/com/drwait/
-│   │   │   │   ├─ auth/
-│   │   │   │   │   ├─ controller/     # 인증 관련 Controller  
-│   │   │   │   │   ├─ service/        # 인증 로직 Service  
-│   │   │   │   │   └─ dto/            # 요청/응답 DTO  
-│   │   │   │   ├─ hospital/
-│   │   │   │   │   ├─ controller/     # 병원 정보 조회 API  
-│   │   │   │   │   ├─ service/        # 병원 검색 로직  
-│   │   │   │   │   └─ repository/     # JPA Repository  
-│   │   │   │   ├─ membership/
-│   │   │   │   │   ├─ controller/     # 구독 결제 API  
-│   │   │   │   │   ├─ service/        # 결제 처리 로직  
-│   │   │   │   │   └─ dto/            # 결제 요청/응답 DTO  
-│   │   │   │   ├─ user/
-│   │   │   │   │   ├─ controller/     # 회원 정보 조회/수정  
-│   │   │   │   │   ├─ service/        # 회원 서비스 로직  
-│   │   │   │   │   ├─ dto/            # 사용자 관련 DTO  
-│   │   │   │   │   └─ repository/     # JPA Repository  
-│   │   │   │   ├─ config/             # SecurityConfig, JwtConfig 등  
-│   │   │   │   ├─ exception/          # CustomException, ErrorCode 정의  
-│   │   │   │   └─ DrWaitApplication.java  # Spring Boot 메인 클래스  
-│   │   │   └─ resources/
-│   │   │       ├─ application-dev.yml   # 개발 환경 설정  
-│   │   │       ├─ application-prod.yml  # 운영 환경 설정  
-│   │   │       └─ (기타 리소스)  
-│   ├─ .env                            # 환경 변수 (DB URL, JWT_SECRET 등)  
-│   ├─ build.gradle                  
-│   └─ README.md                       # 백엔드 전용 README (아래 참조)  
-│
-└─ README.md                         # 프로젝트 루트 최종 README
+- **Notion**  
+  - API 명세서 및 기획 문서 (진행도 체크, 정보 공유)
+- **Postman**  
+  - 백엔드 API 테스트 워크스페이스
+- **MySQL Workbench**  
+  - ERD 작성 및 데이터베이스 관리
+- **GitHub**  
+  - 리포지토리 관리: `main`, `develop`, `feature/*`, `fix/*` 브랜치 전략  
+  - **PR 리뷰** → **CI/CD (예: GitHub Actions)** → **Vercel 배포**  
+- **커뮤니케이션**  
+  - Slack: 일간 스크럼 및 기술 이슈 공유
