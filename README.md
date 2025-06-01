@@ -122,8 +122,7 @@
   - Spring Security (JWT 기반 인증/인가)  
   - `io.jsonwebtoken:jjwt-api` (JWT 라이브러리)  
 - **데이터베이스**  
-  - MySQL / MariaDB  
-  - JPA (Hibernate)  
+  - MySQL
 - **환경 변수 관리**  
   - `dotenv-java` 라이브러리 (`io.github.cdimascio:dotenv-java`)  
   - `.env` 파일에서 DB URL, 사용자명, 비밀번호, JWT 비밀키 읽어옴  
