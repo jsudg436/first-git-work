@@ -93,7 +93,7 @@
 ### Frontend (dr-wait-frontend)
 - **Framework & Library**  
   - Next.js (App Router, Server Components/Client Components)  
-  - React 18 + TypeScript  
+  - React 19 + TypeScript  
 - **스타일링**  
   - Tailwind CSS (유틸리티 퍼스트 CSS)  
   - Sass (SCSS 모듈)  
@@ -102,9 +102,9 @@
   - 커스텀 훅 `useGeolocation` (브라우저 Geolocation API 래핑)  
 - **인증 & 결제 UI**  
   - React Hooks (`useState`, `useEffect`, `useRef`)  
-  - `react-icons` (폰트 아이콘)  
+  - `fontawesome` (폰트 아이콘)  
 - **상태 관리**  
-  - Local state (기본 `useState`) 및 React Query (선택적 사용 가능)  
+  - Local state (기본 `useState`) 및 Nextjs server-actions (선택적 사용 가능)  
 
 ### Backend (dr-wait-backend)
 - **Framework & Language**  
@@ -122,19 +122,14 @@
 ## 환경 변수 및 설정
 
 ### 프론트엔드 (`dr-wait-frontend`)
-- **NEXT_PUBLIC_KAKAO_JAVASCRIPT_KEY**  
-  - 설명: Kakao Maps JavaScript SDK 로드용 앱 키  
-  - 예시(`.env.local`):
-    ```
-    NEXT_PUBLIC_KAKAO_JAVASCRIPT_KEY=abcd1234efgh5678ijkl
-    ```
-  - 권장: `localhost:3000`, `https://your-domain.com`을 카카오 개발자 콘솔의 “사이트 도메인”에 등록
+- **BACKEND_URL="http://localhost:8080"**  
+  - 설명: 백엔드 API 호출용 기본 URL
 
-- **기타 옵션**  
-  - `NEXT_PUBLIC_API_URL` (백엔드 API 호출용 기본 URL)  
-    ```
-    NEXT_PUBLIC_API_URL=http://localhost:8080/api
-    ```
+- **KAKAO_JAVASCRIPT_KEY="8d0d82e91682c60f4aca648e478d27a6"**  
+  - 설명: Kakao Maps JavaScript SDK 로드용 앱 키  
+
+- **AUTH_SECRET="GTpvqQhwZeEyl+60PBeQcQ4Z9yuAFbgPxfg/MGQfzjU="**  
+  - 설명: JWT(JSON Web Token)를 생성 및 검증용 키
 
 ### 백엔드 (`dr-wait-backend`)
 - **`dev.env` (최상위)** 
