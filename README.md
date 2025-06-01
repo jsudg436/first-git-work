@@ -40,12 +40,12 @@
 ---
 
 ## 팀원 소개
-- 💁🏻‍♀️ 최성하 <strong style="color : yellow;">PM</strong>
-- 💁🏻 김승조 <strong style="color : yellow;">BE</strong>
-- 💁🏻‍♀️ 이서연 <strong style="color : yellow;">BE</strong>
-- 💁🏻‍♀️ 이가림 <strong style="color : yellow;">FE</strong>
-- 💁🏻 정연재 <strong style="color : yellow;">FE</strong>
-- 💁🏻 정영석 <strong style="color : yellow;">FE</strong>
+- 최성하 <strong style="color : yellow;">PM</strong>
+- 김승조 <strong style="color : yellow;">BE</strong>
+- 이서연 <strong style="color : yellow;">BE</strong>
+- 이가림 <strong style="color : yellow;">FE</strong>
+- 정연재 <strong style="color : yellow;">FE</strong>
+- 정영석 <strong style="color : yellow;">FE</strong>
 
 ---
 
