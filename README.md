@@ -70,7 +70,7 @@
   - 리스트 뷰 클릭 → 해당 위치로 지도 중앙 이동  
   - 패널을 펼치고 접는 기능(↑↓ 아이콘)
 
-### 3. 멤버십 서비스스 
+### 3. 멤버십 서비스 
 - **멤버십 가격**  
   - 월간 구독(1,000원) 플랜 카드 UI  
   - **자동 갱신 결제** 안내  
@@ -85,14 +85,6 @@
   - 이름, 전화번호, 진료 이력 조회  
 - **진료 기록 관리**  
   - 병원, 진료 일시, 처방 정보 등을 기록·조회
-
-### 5. 인증 & 보안 (백엔드)
-- **Spring Security**를 활용한 JWT 기반 인증/인가  
-  - `PasswordEncoder`로 비밀번호 해시 처리 + UUID 기반 사용자 ID  
-  - 인증이 필요한 API 엔드포인트 필터링(`permitAll()`, `authenticated()`)  
-- **Custom 에러 처리**  
-  - 구체적인 에러 코드 및 메시지 처리 (예: `USER_NOT_FOUND`, `ALREADY_JOINED_FAMILY` 등)  
-  - 공통 예외 처리 핸들러로 Bad Request(400), Unauthorized(401), Conflict(409) 등 HTTP 상태 코드 매핑  
 
 ---
 
@@ -116,7 +108,7 @@
 
 ### Backend (dr-wait-backend)
 - **Framework & Language**  
-  - Spring Boot (2.x) + Java 11+  
+  - Spring Boot + Java 21 
   - Gradle 빌드 시스템  
 - **보안**  
   - Spring Security (JWT 기반 인증/인가)  
@@ -126,11 +118,6 @@
 - **환경 변수 관리**  
   - `dotenv-java` 라이브러리 (`io.github.cdimascio:dotenv-java`)  
   - `.env` 파일에서 DB URL, 사용자명, 비밀번호, JWT 비밀키 읽어옴  
-- **커스텀 예외 처리**  
-  - `ErrorCode` enum 클래스 + `CustomException`  
-  - 전역 `@ControllerAdvice`로 예외 매핑
-
----
 
 ## 환경 변수 및 설정
 
@@ -150,56 +137,34 @@
     ```
 
 ### 백엔드 (`dr-wait-backend`)
-- **`.env` (최상위)**
-    ```
-    # MySQL/MariaDB 연결 정보
-    DB_URL=jdbc:mysql://localhost:3306/drwait_db?useSSL=false&serverTimezone=Asia/Seoul
-    DB_USERNAME=db_user
-    DB_PASSWORD=db_password
+- **`dev.env` (최상위)** 
+- gitinoire로 설정되어 있어 따로 추가 필요
 
-    # JWT 비밀 키
-    JWT_SECRET=my_super_secret_key
+```
+# MySQL/MariaDB 연결 정보
+DB_HOST=db.lunabi.co.kr
+DB_NAME=yonsei-drwait
+DB_USER=drwait
+DB_PASSWORD=drwait2501!
 
-    # 기타 환경 변수
-    AWS_S3_BUCKET=my-s3-bucket
-    ```
-- **개발용 프로필 (`application-dev.yml`)**  
-  - `spring.datasource.url`, `username`, `password` 등  
-- **배포용 프로필 (`application-prod.yml`)**  
-  - 운영 환경에 맞게 RDS 또는 클라우드 DB URL, 보안 설정 등  
-
+# JWT 비밀 키
+JWT_SECRET_KEY=MySuperSecretKey1234567890123456!!
+JWT_ACCESS_TOKEN_VALIDITY_IN_SECONDS=3600
+JWT_REFRESH_TOKEN_VALIDITY_IN_SECONDS=4000
+```
 ---
 
 ## 로컬 개발 환경 구성 및 실행 방법
 
 ### 프론트엔드 (`dr-wait-frontend`)
 0. 환경 설정
-```bash
+```
+bash
 pnpm i
 ```
 
 1. 개발 서버 실행
-```bash
-pnpm dev
-```
+application 파일 실행
 
 2. 프리뷰 접근
 Open [http://localhost:3000](http://localhost:3000)
-
-### 백엔드 (`dr-wait-frontend`)
-
----
-
-## 협업 툴 및 Git 워크플로우
-
-- **Notion**  
-  - API 명세서 및 기획 문서 (진행도 체크, 정보 공유)
-- **Postman**  
-  - 백엔드 API 테스트 워크스페이스
-- **MySQL Workbench**  
-  - ERD 작성 및 데이터베이스 관리
-- **GitHub**  
-  - 리포지토리 관리: `main`, `develop`, `feature/*`, `fix/*` 브랜치 전략  
-  - **PR 리뷰** → **CI/CD (예: GitHub Actions)** → **Vercel 배포**  
-- **커뮤니케이션**  
-  - Slack: 일간 스크럼 및 기술 이슈 공유
