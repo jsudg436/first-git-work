@@ -151,8 +151,7 @@ JWT_REFRESH_TOKEN_VALIDITY_IN_SECONDS=4000
 
 ### 프론트엔드 (`dr-wait-frontend`)
 0. 환경 설정
-```
-bash
+```bash
 pnpm i
 ```
 
