@@ -135,6 +135,62 @@
 
 ---
 
+## 환경 변수 및 설정
+
+### 프론트엔드 (`dr-wait-frontend`)
+- **NEXT_PUBLIC_KAKAO_JAVASCRIPT_KEY**  
+  - 설명: Kakao Maps JavaScript SDK 로드용 앱 키  
+  - 예시(`.env.local`):
+    ```
+    NEXT_PUBLIC_KAKAO_JAVASCRIPT_KEY=abcd1234efgh5678ijkl
+    ```
+  - 권장: `localhost:3000`, `https://your-domain.com`을 카카오 개발자 콘솔의 “사이트 도메인”에 등록
+
+- **기타 옵션**  
+  - `NEXT_PUBLIC_API_URL` (백엔드 API 호출용 기본 URL)  
+    ```
+    NEXT_PUBLIC_API_URL=http://localhost:8080/api
+    ```
+
+### 백엔드 (`dr-wait-backend`)
+- **`.env` (최상위)**
+    ```
+    # MySQL/MariaDB 연결 정보
+    DB_URL=jdbc:mysql://localhost:3306/drwait_db?useSSL=false&serverTimezone=Asia/Seoul
+    DB_USERNAME=db_user
+    DB_PASSWORD=db_password
+
+    # JWT 비밀 키
+    JWT_SECRET=my_super_secret_key
+
+    # 기타 환경 변수
+    AWS_S3_BUCKET=my-s3-bucket
+    ```
+- **개발용 프로필 (`application-dev.yml`)**  
+  - `spring.datasource.url`, `username`, `password` 등  
+- **배포용 프로필 (`application-prod.yml`)**  
+  - 운영 환경에 맞게 RDS 또는 클라우드 DB URL, 보안 설정 등  
+
+---
+
+## 로컬 개발 환경 구성 및 실행 방법
+
+### 프론트엔드 (`dr-wait-frontend`)
+0. 환경 설정
+```bash
+pnpm i
+```
+
+1. 개발 서버 실행
+```bash
+pnpm dev
+```
+
+2. 프리뷰 접근
+Open [http://localhost:3000](http://localhost:3000)
+
+---
+
 ## 협업 툴 및 Git 워크플로우
 
 - **Notion**  
