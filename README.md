@@ -189,6 +189,8 @@ pnpm dev
 2. 프리뷰 접근
 Open [http://localhost:3000](http://localhost:3000)
 
+### 백엔드 (`dr-wait-frontend`)
+
 ---
 
 ## 협업 툴 및 Git 워크플로우
