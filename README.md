@@ -156,7 +156,9 @@ pnpm i
 ```
 
 1. 개발 서버 실행
-application 파일 실행
+```bash
+pnpm dev
+```
 
 2. 프리뷰 접근
 Open [http://localhost:3000](http://localhost:3000)
